@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Test</title>
+</head>
+<body>
+	<button onclick="start();">시작</button>
+
+<script>
+var data = [
+		[10,130], [100,60], [190,160], [280,10]
+	];
+
+var segments = [],
+	points = [],
+	i = -1,
+	n = data.length,
+	d;
+
+var getX = function(point){
+	return point[0];
+}
+var getY = function(point){
+	return point[1];
+}
+var interpolate = function(points){
+	console.log(points);
+	var b = points.join("/");
+	console.log(b);
+	console.log("=============");
+
+	return points.join("L");
+}
+
+function segment(){
+	segments.push("M", interpolate(points));
+}
+
+
+function start(){
+	console.log("start:" + data);
+
+	while(++i < n){
+		d = data[i];
+		points.push([+getX.call(this,d,i), +getY.call(this,d,i)]);
+	}
+
+
+	if(points.length){
+		segment();
+	}
+
+
+	if(segments.length){
+		console.log(segments.join(""));
+	} else{
+		console.log(null);
+	}
+
+}
+</script>
+</body>
+</html>
