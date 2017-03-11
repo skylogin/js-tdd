@@ -4,17 +4,17 @@ MyApp = {};
 MyApp.diContainer = new DIContainer();
 
 MyApp.diContainer.register('Service', [], () => {
-	return new ConferenceWebSvc();
+  return new ConferenceWebSvc();
 });
 
 MyApp.diContainer.register('Messenger', [], () => {
-	return new Messenger();
+  return new Messenger();
 });
 
 MyApp.diContainer.register('AttendeeFactory', ['Service', 'Messenger'], (service, messenger) => {
-	return ((attendeeId) => {
-		return new Attendee(service, messenger, attendeeId);
-	});
+  return ((attendeeId) => {
+    return new Attendee(service, messenger, attendeeId);
+  });
 });
 
 
